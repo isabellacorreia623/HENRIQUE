@@ -43,8 +43,6 @@ function AdviceCard() {
       }
 
       const data = await res.json();
-
-      // Ajuste conforme a estrutura da resposta da API:
       const textoTraduzido = data.trans || data.translated_text || data.data?.translatedText;
 
       if (textoTraduzido) {
@@ -52,7 +50,6 @@ function AdviceCard() {
       } else {
         throw new Error('Resposta inesperada da API de tradução.');
       }
-
     } catch (error) {
       console.error('Erro na tradução:', error);
       setErro('Erro ao traduzir o texto. Tente novamente mais tarde.');
@@ -62,26 +59,34 @@ function AdviceCard() {
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto mt-10 bg-white rounded-xl shadow-md space-y-4">
-      <h2 className="text-xl font-bold text-gray-800">Conselho (Original):</h2>
-      <p className="text-gray-700 italic">{advice}</p>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4">
+      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-xl w-full space-y-6">
+        <h1 className="text-3xl font-bold text-blue-700 text-center">Conselho do Dia</h1>
 
-      <button
-        onClick={traduzirTexto}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition"
-        disabled={loading}
-      >
-        {loading ? 'Traduzindo...' : 'Traduzir para Português'}
-      </button>
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800 mb-1">Conselho (Original):</h2>
+          <p className="text-gray-700 italic">{advice}</p>
+        </div>
 
-      {translated && (
-        <>
-          <h2 className="text-xl font-bold text-gray-800">Conselho (Traduzido):</h2>
-          <p className="text-black">{translated}</p>
-        </>
-      )}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onClick={traduzirTexto}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl transition duration-200"
+            disabled={loading}
+          >
+            {loading ? 'Traduzindo...' : 'Traduzir para Português'}
+          </button>
+        </div>
 
-      {erro && <p className="text-red-600">{erro}</p>}
+        {translated && (
+          <div>
+            <h2 className="text-lg font-semibold text-gray-800 mb-1">Conselho (Traduzido):</h2>
+            <p className="text-gray-900">{translated}</p>
+          </div>
+        )}
+
+        {erro && <p className="text-red-600 text-center">{erro}</p>}
+      </div>
     </div>
   );
 }

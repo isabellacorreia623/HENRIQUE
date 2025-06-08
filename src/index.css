@@ -1,71 +1,170 @@
-
-/* Seus estilos personalizados continuam abaixo */
-
+/* ===== Reset + Fontes ===== */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  line-height: 1.5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background-color: #f9fafb;
+  color: #1f2937;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ===== Links ===== */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
+/* ===== Botões (usado no botão da home) ===== */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  all: unset;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: white;
+  color: #2563eb; /* azul do Tailwind */
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+  background-color: #e5e7eb; /* bg-gray-200 */
+  transform: translateY(-1px);
+}
+
+/* ===== Navegação principal ===== */
+nav {
+  background-color: #2563eb; /* bg-blue-600 */
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+nav a {
+  margin: 0 1.5rem;
+  transition: text-decoration 0.2s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Home ===== */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #06b6d4, #3b82f6); /* from-cyan-500 to-blue-500 */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-inner {
+  max-width: 500px;
+}
+
+.home-inner h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.home-inner p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== Conselho (AdviceCard) ===== */
+.advice-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.advice-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.advice-card p {
+  color: #4b5563; /* text-gray-700 */
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+/* Tradução e erro */
+.advice-card .translated {
+  font-style: normal;
+  font-weight: 500;
+  color: #111827;
+}
+
+.advice-card .erro {
+  color: #dc2626;
+  font-weight: 500;
+/* ===== Container central ===== */
+.page-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  padding: 2rem;
+}
+
+/* ===== Advice Card dentro de uma "bar" ===== */
+.advice-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e5e7eb; /* borda leve */
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  gap: 1rem;
+}
+
+/* ===== Estrela ===== */
+.favorite-star {
+  font-size: 2rem;
+  color: #fbbf24; /* amarelo (Tailwind yellow-400) */
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+  color: #f59e0b; /* amarelo-500 */
+}
+
+/* Se for desfavoritado (classe adicional que você pode adicionar com JS) */
+.favorite-star.unfavorite {
+  color: #d1d5db; /* gray-300 */
+}
+
 }

@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import RandomAdvice from './pages/RandomAdvice';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/advice" element={<RandomAdvice />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

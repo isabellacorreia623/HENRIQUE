@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useFavorites } from '../context/FavoritesContext'; // <-- ADICIONADO
 
 function AdviceCard() {
   const [advice, setAdvice] = useState('');
   const [translated, setTranslated] = useState('');
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState('');
+
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites(); // <-- ADICIONADO
 
   useEffect(() => {
     const getAdvice = async () => {
@@ -58,6 +61,14 @@ function AdviceCard() {
     }
   };
 
+  const handleFavorite = () => { // <-- ADICIONADO
+    if (isFavorite(advice)) {
+      removeFavorite(advice);
+    } else {
+      addFavorite(advice);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 max-w-xl w-full space-y-6">
@@ -75,6 +86,16 @@ function AdviceCard() {
             disabled={loading}
           >
             {loading ? 'Traduzindo...' : 'Traduzir para Português'}
+          </button>
+
+          {/* BOTÃO DE FAVORITO */}
+          <button
+            onClick={handleFavorite}
+            className={`${
+              isFavorite(advice) ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
+            } text-white font-medium py-2 px-6 rounded-xl transition duration-200`}
+          >
+            {isFavorite(advice) ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
           </button>
         </div>
 
